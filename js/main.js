@@ -52,17 +52,60 @@ function processData(data){
     var gps = doc.getElementsByTagName("Race")
     console.log(gps)
 
+    var gp_date;
+
     for(var i = 0; i < gps.length; i++){
         var gp = gps[i];
         var date = gp.getElementsByTagName("Date")[0].textContent
 
         if(date == nextRaceDate){
-            console.log(date)
+            console.log(`Next race is ${date}`)
+            gp_date = gp
         }
     }
 
-    // var raceweekend = doc.getElementsByText("Date")
-    // console.log(raceweekend)
+
+    // Below we create the GP object
+    console.log(gp_date)
+    let gp_object ={
+        race_name : gp_date.getElementsByTagName("RaceName")[0].textContent,
+        date : gp_date.getElementsByTagName("Date")[0].textContent,
+        time_of_race : gp_date.getElementsByTagName("Time")[0].textContent,
+        fp1 : {
+            fp1_time : gp_date.getElementsByTagName("Time")[1].textContent
+        },
+        fp2 : {
+            fp2_time : gp_date.getElementsByTagName("Time")[2].textContent
+        },
+        fp3 : {
+            fp3_time : gp_date.getElementsByTagName("Time")[3].textContent
+        },
+        quali : {
+            qual_time : gp_date.getElementsByTagName("Time")[4].textContent
+        }
+    } 
+
+    field_names = [ ["raceName", gp_object.race_name],
+                    ["Date",gp_object.date],
+                    ["raceTime",gp_object.time_of_race],
+                    ["qualiTime",gp_object.quali.qual_time],
+                    ["fp1Time",gp_object.fp1.fp1_time],
+                    ["fp2Time",gp_object.fp2.fp2_time],
+                    ["fp3Time",gp_object.fp3.fp3_time]
+                ]
+
+    for(var i = 0; i < field_names.length; i++){
+        field_name = field_names[i]
+        console.log(field_name[0])
+        replaceText(field_name[0],field_name[1])
+    }            
+    
+
+}
+
+function replaceText(fieldName, object_value){
+    let fieldNameElement = document.getElementById(fieldName);
+    fieldNameElement.innerHTML = object_value;
 }
 
 function getResults(){

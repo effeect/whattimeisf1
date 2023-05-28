@@ -16,9 +16,59 @@
                 padding-bottom: 20px;
             }
         </style>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/h1J8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
     </head>
     <body>
-    <h1>Testing...</h1>
+    <div class="container text-center">
+        <h1>What time is F1?</h1>
+    </div>
+    <hr>
+    <div class="container text center">
+        <h2 id="raceName" class="text-center">This week is Monaco</h2>
+        <h2 id="Date" class="text-center">Date of Race is : </h2>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Event</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Race</th>
+                <td id="raceTime">Time Here</td>
+              </tr>
+              <tr>
+                <th scope="row">Quali</th>
+                <td id="qualiTime">Time Here</td>
+              </tr>
+              <tr>
+                <th scope="row">FP1</th>
+                <td id="fp1Time">Larry</td>
+              </tr>
+              <tr>
+                <th scope="row">FP2</th>
+                <td id="fp2Time">Larry</td>
+              </tr>
+              <tr>
+                <th scope="row">FP3</th>
+                <td id="fp3Time">Larry</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+
         <script src="js/main.js"></script>
     </body>
 </html>
