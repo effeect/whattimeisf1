@@ -22,6 +22,10 @@ function formattedDate(d = new Date) {
     return `${year}-${month}-${day}`;
   }
 
+function removeLastCharacter(string){
+    let result = string.slice(0,-1);
+    return result
+}
 // Stores the info
 function processData(data){
     file = data;
@@ -88,6 +92,10 @@ function processData(data){
             qual_time : gp_date.getElementsByTagName("Time")[4].textContent
         }
     } 
+
+    let test = (closest.toLocaleString().split(',')[0].trim() + " " + removeLastCharacter(gp_object.time_of_race)).split(/[\/ ]/)
+    test[3] = test[3].split(",")
+    console.log(test)
 
     field_names = [ ["raceName", gp_object.race_name],
                     ["Date",gp_object.date],
