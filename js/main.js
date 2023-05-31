@@ -43,11 +43,15 @@ function processData(data){
     
     console.log(newDates);
     // console.log(dates);
-    // Find nearest date
-    var temp = newDates.map(d => Math.abs(new Date() - new Date(d).getTime()));
-    var idx = temp.indexOf(Math.min(...temp));
-    var nextRaceDate = formattedDate(newDates[idx])
-    console.log(nextRaceDate)
+    var closest = Infinity;
+    newDates.forEach(date => {
+        if(date >= userDate && date < closest) {
+            closest = date
+        }
+    })
+
+    var nextRaceDate = formattedDate(closest)
+    console.log(`The next race is now : ${nextRaceDate}`)
 
     var gps = doc.getElementsByTagName("Race")
     console.log(gps)
