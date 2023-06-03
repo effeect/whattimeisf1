@@ -122,7 +122,7 @@ function getResults(){
         redirect: 'follow'
       };
       
-    var result = fetch("http://ergast.com/api/f1/current", requestOptions)
+    var result = fetch("https://ergast.com/api/f1/current", requestOptions)
         .then(response => response.text())
         .then(result => processData(result))
         .catch(error => console.log('error', error));
