@@ -1,15 +1,10 @@
-console.log("Hello World")
-
-// Parse the XML file
+// To Parse the XML file
 var parser = new DOMParser();
 
 // Getting the users current date and time
 var userDate = new Date();
 var file;
 
-function present(){
-    console.log("Hello")
-}
 
 function formattedDate(d = new Date) {
     let month = String(d.getMonth() + 1);
@@ -33,9 +28,7 @@ function processData(data){
     //Converting the string to XML below
     var doc = parser.parseFromString(file, "application/xml")
     var dates = doc.getElementsByTagName("Date")
-    console.log(dates)
     var newDates = [];
-    console.log(dates)
     for(var x = 0; x < dates.length; x++){
         let allDates = new Date(dates[x].textContent)
 
@@ -45,8 +38,6 @@ function processData(data){
         } 
     }
     
-    console.log(newDates);
-    // console.log(dates);
     var closest = Infinity;
     newDates.forEach(date => {
         if(date >= userDate && date < closest) {
@@ -55,11 +46,10 @@ function processData(data){
     })
 
     var nextRaceDate = formattedDate(closest)
-    console.log(`The next race is now : ${nextRaceDate}`)
+    // Uncoment for Debugging 
+    //console.log(`The next race is now : ${nextRaceDate}`)
 
     var gps = doc.getElementsByTagName("Race")
-    console.log(gps)
-
     var gp_date;
 
     for(var i = 0; i < gps.length; i++){
@@ -72,9 +62,7 @@ function processData(data){
         }
     }
 
-
     // Below we create the GP object
-    console.log(gp_date)
     let gp_object ={
         race_name : gp_date.getElementsByTagName("RaceName")[0].textContent,
         date : gp_date.getElementsByTagName("Date")[0].textContent,
@@ -93,26 +81,34 @@ function processData(data){
         }
     } 
 
-    let test = (closest.toLocaleString().split(',')[0].trim() + " " + removeLastCharacter(gp_object.time_of_race)).split(/[\/ ]/)
-    test[3] = test[3].split(",")
-    console.log(test)
+    dateObjectRepresent(closest,gp_object.time_of_race)
 
     field_names = [ ["raceName", gp_object.race_name],
                     ["Date",gp_object.date],
-                    ["raceTime",gp_object.time_of_race],
-                    ["qualiTime",gp_object.quali.qual_time],
-                    ["fp1Time",gp_object.fp1.fp1_time],
-                    ["fp2Time",gp_object.fp2.fp2_time],
-                    ["fp3Time",gp_object.fp3.fp3_time]
+                    ["raceTime",dateObjectRepresent(closest,gp_object.time_of_race)],
+                    ["qualiTime",dateObjectRepresent(closest,gp_object.quali.qual_time)],
+                    ["fp1Time",dateObjectRepresent(closest,gp_object.fp1.fp1_time)],
+                    ["fp2Time",dateObjectRepresent(closest,gp_object.fp2.fp2_time)],
+                    ["fp3Time",dateObjectRepresent(closest,gp_object.fp3.fp3_time)]
                 ]
 
     for(var i = 0; i < field_names.length; i++){
         field_name = field_names[i]
-        console.log(field_name[0])
         replaceText(field_name[0],field_name[1])
     }            
     
 
+}
+
+// Function to create a Date Format session
+function dateObjectRepresent(date,time){
+    let dateTrim = date.toLocaleString().split(',')[0].trim().split(/[\/ ]/)
+    let timeTrim = removeLastCharacter(time).split(":")
+    
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
+    let dateObject = new Date(Date.UTC(dateTrim[2] , dateTrim[1] -1 , dateTrim[0] , timeTrim[0] , timeTrim[1] , timeTrim[2] ))
+    let timeObject = dateObject.toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'});
+    return timeObject;
 }
 
 function replaceText(fieldName, object_value){
