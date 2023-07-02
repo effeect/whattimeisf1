@@ -40,8 +40,10 @@ function processData(data){
     
     var closest = Infinity;
     newDates.forEach(date => {
-        if(date >= userDate && date < closest) {
+        if(date >= userDate.setHours(userDate.getHours() - 3) && date < closest) {
             closest = date
+            console.log(closest)
+            console.log(userDate.setHours(userDate.getHours() - 3))
         }
     })
 
