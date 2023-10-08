@@ -12,7 +12,9 @@ headers = {}
 response = requests.request("GET", url, headers=headers, data=payload)
 
 data_dict = xmltodict.parse(response.text)
+json_data = json.dumps(data_dict, indent=4)
 
 if __name__ == "__main__":
-    print(data_dict)
+    with open("data.json","w") as f:
+        f.write(json_data)
     
