@@ -1,2 +1,11 @@
 # What time is F1
-A simple static website that grabs info off https://documenter.getpostman.com/view/11586746/SztEa7bL#b4f68838-dccf-4387-9879-0b8a2c3a2ba3 and processes it into a simple readable GitHub Pages
+This is a website powered by FastF1 that simply displays the current race time/info, mostly did it because I was 
+tired of trying to find it.
+
+# To-Do
+There are some bits and pieces that need to be done before I can say this project is complete
+- Need to improve the formatting, currently using a boostrap cover template
+- Tidy up the Python and seperate it out
+- Make the time change depending on the timezone (Currently looking at UTC-00)
+- Make GitHub Action to automate the updating of this static site
+
