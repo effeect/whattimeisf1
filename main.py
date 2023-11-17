@@ -32,11 +32,6 @@ if __name__ == "__main__":
     race_data = fastf1.get_event(year, next_date["RoundNumber"].values[0])
     next_race = fastf1.get_event(year, next_date["RoundNumber"].values[0] + 1)
 
-    print(prev_race)
-    print(race_data)
-    print(next_race)
-
-    print(race_data[3])
     event_info = race_data[3]
 
     event_sessions = []
@@ -45,7 +40,7 @@ if __name__ == "__main__":
         session_info_date = race_data.get_session_date(x, utc="UTC-00:00")
         session_info_name = race_data.get_session_name(x)
         event_sessions.append([session_info_name, session_info_date])
-        print(session_info_name, session_info_date)
+        # print(session_info_name, session_info_date)
 
     with open('index_template.html') as file_:
         template = Template(file_.read())
