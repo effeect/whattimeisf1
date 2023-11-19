@@ -2,7 +2,7 @@ name: refresh content
 
 on:
   schedule:
-    - cron: "30 11 * * *"    #runs at 11:30 UTC everyday
+    - cron: "30 11 * * MON"    #runs at 11:30 UTC everyday
 
 jobs:
   getdataandrefreshmap:
