@@ -7,5 +7,4 @@ There are some bits and pieces that need to be done before I can say this projec
 - Need to improve the formatting, currently using a boostrap cover template
 - Tidy up the Python and seperate it out
 - Make the time change depending on the timezone (Currently looking at UTC-00)
-- Make GitHub Action to automate the updating of this static site
 
