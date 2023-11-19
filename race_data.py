@@ -1,8 +1,9 @@
 import fastf1
+from tabulate import tabulate
 
 class race_data:
-    # Define a class attribute that is shared by all instances of the class
-
+    """Grabs the race data and convert it to a HTML table
+    """
     # Define a constructor that takes one parameter and assigns it to an instance attribute
     def __init__(self, data):
         # Assign the parameter to an instance attribute named instance_attribute
@@ -14,26 +15,15 @@ class race_data:
             self.session_info_date = data.get_session_date(x, utc="UTC-00:00")
             self.session_info_name = data.get_session_name(x)
             self.event_sessions.append([self.session_info_name, self.session_info_date])
-        # print(session_info_name, session_info_date)
-        
-        print(self.event_sessions)
         # Need to figure out a way to format this better
-        self.session_1_name = "placeholder1"
-        self.session_1_time = "placeholder1"
-        self.session_2_name = "placeholder2"
-        self.session_2_time = "placeholder2"
-        self.session_3_name = "placeholder3"
-        self.session_3_time = "placeholder3"
-        self.session_4_name = "placeholder4"
-        self.session_4_time = "placeholder4"
-        self.session_5_name = "placeholder5"
-        self.session_5_time = "placeholder5"
         
-
-    # Define a method that takes one parameter and returns the sum of the instance attribute and the parameter
-    def my_method(self, parameter):
-        # Return the sum of the instance attribute and the parameter
-        print(self.race_dataframe)
+    def generate_table(self):
+        """Generates a HTML table with tabulate
+        """
+        table = tabulate(self.event_sessions, tablefmt='html')
+        tbody = table.replace("table","tbody")
+        return(tbody)
+        
 
 # Uncomment below to test class
 

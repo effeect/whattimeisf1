@@ -38,22 +38,13 @@ if __name__ == "__main__":
 
     event_sessions = []
     current_race = race_data.race_data(race_data_class)
+    table = current_race.generate_table()
 
     with open('index_template.html', encoding="UTF8") as file_:
         template = Template(file_.read())
 
     output = template.render(event=event_info,
-                             session_1_name=current_race.event_sessions[0][0],
-                             session_1_date=current_race.event_sessions[0][1],
-                             session_2_name=current_race.event_sessions[1][0],
-                             session_2_date=current_race.event_sessions[1][1],
-                             session_3_name=current_race.event_sessions[2][0],
-                             session_3_date=current_race.event_sessions[2][1],
-                             session_4_name=current_race.event_sessions[3][0],
-                             session_4_date=current_race.event_sessions[3][1],
-                             session_5_name=current_race.event_sessions[4][0],
-                             session_5_date=current_race.event_sessions[4][1]
-                             )
+                             table=table)
 
     publish_html(output)
     # html_table = race_data.to_frame().to_html(classes='table table-bordered table-dark" id="myTable')
