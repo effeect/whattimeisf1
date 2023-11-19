@@ -1,6 +1,8 @@
 name: refresh content
 
-on: [push]
+on:
+  schedule:
+  - cron: "0 11 * * 1"
 
 jobs:
   getdataandrefreshtable:
