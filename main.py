@@ -12,7 +12,9 @@ import race_data
 # Thanks to https://stackoverflow.com/questions/32237862/find-the-closest-date-to-a-given-date
 def nearest_event(items):
     """Getting the nearest next possible date"""
-    return min(items, key=lambda x: abs(x - datetime.datetime.now()))
+    now = datetime.datetime.now()
+    future_dates = [date for date in items if date > now]
+    return min(future_dates, key=lambda x: abs(x - now))
 
 def publish_html(data):
     """Writes a index.html file"""
@@ -28,11 +30,10 @@ if __name__ == "__main__":
     # for column in schedule:
     #     print(schedule[column])
     date = nearest_event(schedule["EventDate"])
+    print(date)
     next_date = schedule.loc[schedule['EventDate'] == f'{date}']
 
-    prev_race = fastf1.get_event(year, next_date["RoundNumber"].values[0] - 1)
     race_data_class = fastf1.get_event(year, next_date["RoundNumber"].values[0])
-    next_race = fastf1.get_event(year, next_date["RoundNumber"].values[0] + 1)
 
     event_info = race_data_class[3]
 
