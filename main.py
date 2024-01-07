@@ -25,7 +25,7 @@ def publish_html(data):
 if __name__ == "__main__":
     year = datetime.date.today().year
 
-    schedule = fastf1.events.get_event_schedule(2023)
+    schedule = fastf1.events.get_event_schedule(2024)
     # To look at all the possible data points
     # for column in schedule:
     #     print(schedule[column])
@@ -48,5 +48,3 @@ if __name__ == "__main__":
                              table=table)
 
     publish_html(output)
-    # html_table = race_data.to_frame().to_html(classes='table table-bordered table-dark" id="myTable')
-    # print(html_table)
