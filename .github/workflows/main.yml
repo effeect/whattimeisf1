@@ -1,4 +1,6 @@
 name: refresh content
+permissions:
+  contents: write
 
 on:
   schedule:
@@ -20,9 +22,8 @@ jobs:
       - name: execute py script
         run: |
           python main.py
-          git pull 
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
           git commit -m "crongenerated"
-          git push -f origin master
+          git push
