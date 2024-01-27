@@ -25,17 +25,17 @@ def publish_html(data):
 if __name__ == "__main__":
     year = datetime.date.today().year
 
-    schedule = fastf1.events.get_event_schedule(2024)
-    # To look at all the possible data points
-    # for column in schedule:
-    #     print(schedule[column])
+    schedule = fastf1.events.get_event_schedule(year)
     date = nearest_event(schedule["EventDate"])
-    print(date)
     next_date = schedule.loc[schedule['EventDate'] == f'{date}']
-
     race_data_class = fastf1.get_event(year, next_date["RoundNumber"].values[0])
 
-    event_info = race_data_class[3]
+    # Taking the values from the Race Data class and formatting it
+    # print(race_data_class)
+    event_info = race_data_class.iloc[5]
+    con_info = race_data_class.iloc[1]
+    loc_info = race_data_class.iloc[2]
+
 
     event_sessions = []
     current_race = race_data.race_data(race_data_class)
@@ -45,6 +45,8 @@ if __name__ == "__main__":
         template = Template(file_.read())
 
     output = template.render(event=event_info,
-                             table=table)
+                             table=table,
+                             country=con_info,
+                             location=loc_info)
 
     publish_html(output)

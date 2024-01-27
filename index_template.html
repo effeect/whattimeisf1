@@ -10,7 +10,7 @@
   <!-- Custom styles for this template -->
   <link href="cover.css" rel="stylesheet">
 </head>
-<body class="text-center" data-new-gr-c-s-check-loaded="14.1027.0" data-gr-ext-installed="">
+<body class="text-center bg" data-new-gr-c-s-check-loaded="14.1027.0" data-gr-ext-installed="">
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
@@ -23,7 +23,8 @@
       </header>
 
       <main role="main" class="inner cover">
-        <h1 class="cover-heading">Next Race is {{ event }}</h1>
+        <h1 class="cover-heading">Next Grand Prix is the {{ event }}</h1>
+        <h2 class="cover-heading">Hosted in {{ country }}, {{ location }}</h2>
           <table class="table">
         <thead class="thead-primary">
         <tr>
@@ -37,7 +38,7 @@
               </main>
 
       <footer class="mastfoot mt-auto">
-        <div class="inner">
+        <div class="cover-container bg-dark ">
           <p>Hosted on Github Pages, Cover template based on the example on <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
         </div>
       </footer>
