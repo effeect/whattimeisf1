@@ -19,11 +19,14 @@ jobs:
       - name: Install dependencies
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: execute py script
+      - name: execute main.py
         run: |
           python main.py
+      - name : push to master
+        run: |
+          date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "crongenerated"
+          git commit -m "generated"
           git push
