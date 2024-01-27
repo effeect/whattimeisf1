@@ -5,8 +5,8 @@ permissions:
 on:
   push:
     branches: ["master"]
-#  schedule:
-#  - cron: "0 11 * * 1"
+  schedule:
+  - cron: "0 11 * * 1"
 
 jobs:
   getdataandrefreshtable:
