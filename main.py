@@ -28,6 +28,11 @@ if __name__ == "__main__":
     schedule = fastf1.events.get_event_schedule(year)
     date = nearest_event(schedule["EventDate"])
     next_date = schedule.loc[schedule['EventDate'] == f'{date}']
+
+    if(next_date["RoundNumber"].values[0] == 0):
+        next_date["RoundNumber"].values[0] = 1 
+        
+    print(next_date["RoundNumber"].values[0])
     race_data_class = fastf1.get_event(year, next_date["RoundNumber"].values[0])
 
     # Taking the values from the Race Data class and formatting it
