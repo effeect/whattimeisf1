@@ -1,8 +1,9 @@
+"""This file is designed to be executed in GitHub Actions to generate the index.html that gets displayed"""
+import datetime
 import fastf1.events
 from jinja2 import Template
 
 import fastf1
-import datetime
 import pandas as pd
 import race_data
 
@@ -40,7 +41,6 @@ if __name__ == "__main__":
     event_info = race_data_class.iloc[5]
     con_info = race_data_class.iloc[1]
     loc_info = race_data_class.iloc[2]
-
 
     event_sessions = []
     current_race = race_data.race_data(race_data_class)

@@ -1,4 +1,4 @@
-import fastf1
+"""Class to grab to convert the race data into a html table format"""
 from tabulate import tabulate
 
 class race_data:
@@ -8,7 +8,6 @@ class race_data:
     def __init__(self, data):
         # Assign the parameter to an instance attribute named instance_attribute
         self.race_dataframe = data
-        
         # Seperate out the data
         self.event_sessions = []
         for x in range(1, 6):
