@@ -65,7 +65,7 @@
       </footer>
     </div>
     <script>
-    function stringToDate(dateString) {
+      function stringToDate(dateString) {
       // Split the date and time parts
       const [datePart, timePart] = dateString.split(' ');
 
@@ -76,7 +76,7 @@
       const [hours, minutes, seconds] = timePart.split(':').map(Number);
 
       // Create and return the Date object
-      return new Date(year, month - 1, day, hours, minutes, seconds);
+      return new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds));
     }
 
       // Taking values from Jinja Script
