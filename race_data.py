@@ -1,27 +1,31 @@
 """Class to grab to convert the race data into a html table format"""
-from tabulate import tabulate
-
 class race_data:
-    """Grabs the race data and convert it to a HTML table
-    """
-    # Define a constructor that takes one parameter and assigns it to an instance attribute
+    """Grabs the race data and converts it to a HTML table"""
     def __init__(self, data):
-        # Assign the parameter to an instance attribute named instance_attribute
+        """Initialize with race data and separate out the session information"""
         self.race_dataframe = data
-        # Seperate out the data
         self.event_sessions = []
         for x in range(1, 6):
-            self.session_info_date = data.get_session_date(x, utc="UTC-00:00")
-            self.session_info_name = data.get_session_name(x)
-            self.event_sessions.append([self.session_info_name, self.session_info_date])
-        # Need to figure out a way to format this better
+            session_info_date = data.get_session_date(x, utc="UTC-00:00")
+            session_info_name = data.get_session_name(x)
+            # Include the ID number as a separate attribute in the session data
+            self.event_sessions.append({'id': x, 'name': session_info_name, 'date': session_info_date})
         
     def generate_table(self):
-        """Generates a HTML table with tabulate
-        """
-        table = tabulate(self.event_sessions, tablefmt='html')
-        tbody = table.replace("table","tbody")
-        return(tbody)
+        """Generates a HTML table manually with data-id attributes"""
+        table_data = '<tbody>\n'
+        
+        # Add each session as a row with a data-id attribute
+        for session in self.event_sessions:
+            table_data += f'    <tr>\n'
+            table_data += f'      <td>{session["name"]}</td>\n'
+            table_data += f'      <td data-id="time">{session["date"]}</td>\n'
+            table_data += '    </tr>\n'
+        
+        # Close the tbody and table tags
+        table_data += '  </tbody>'
+        
+        return table_data
         
 
 # Uncomment below to test class

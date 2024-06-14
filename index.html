@@ -34,14 +34,27 @@
         </tr>
         </thead>
         <tbody>
-<tbody>
-<tr><td>Practice 1</td><td>2024-06-21 11:30:00</td></tr>
-<tr><td>Practice 2</td><td>2024-06-21 15:00:00</td></tr>
-<tr><td>Practice 3</td><td>2024-06-22 10:30:00</td></tr>
-<tr><td>Qualifying</td><td>2024-06-22 14:00:00</td></tr>
-<tr><td>Race      </td><td>2024-06-23 13:00:00</td></tr>
-</tbody>
-</tbody>
+    <tr>
+      <td>Practice 1</td>
+      <td data-id="time">2024-06-21 11:30:00</td>
+    </tr>
+    <tr>
+      <td>Practice 2</td>
+      <td data-id="time">2024-06-21 15:00:00</td>
+    </tr>
+    <tr>
+      <td>Practice 3</td>
+      <td data-id="time">2024-06-22 10:30:00</td>
+    </tr>
+    <tr>
+      <td>Qualifying</td>
+      <td data-id="time">2024-06-22 14:00:00</td>
+    </tr>
+    <tr>
+      <td>Race</td>
+      <td data-id="time">2024-06-23 13:00:00</td>
+    </tr>
+  </tbody>
         </table>
               </main>
 
@@ -51,4 +64,26 @@
         </div>
       </footer>
     </div>
+    <script>
+    function stringToDate(dateString) {
+      // Split the date and time parts
+      const [datePart, timePart] = dateString.split(' ');
+
+      // Split the date part into year, month, and day
+      const [year, month, day] = datePart.split('-').map(Number);
+
+      // Split the time part into hours, minutes, and seconds
+      const [hours, minutes, seconds] = timePart.split(':').map(Number);
+
+      // Create and return the Date object
+      return new Date(year, month - 1, day, hours, minutes, seconds);
+    }
+
+      // Taking values from Jinja Script
+      let elements = document.querySelectorAll('[data-id="time"]');
+      for(x = 0; x < elements.length; x++){
+        let timeobject = stringToDate(elements[x].textContent)
+        elements[x].textContent = timeobject.toDateString() + " " + timeobject.toLocaleTimeString()
+      }
+  </script>
 </body>
